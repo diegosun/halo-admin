@@ -15,7 +15,12 @@
               找回密码
             </a>
           </router-link>
-          <a @click="handleToggleShowApiForm" class="tip animated fadeInUp" :style="{ 'animation-delay': '0.4s' }">
+          <a
+            @click="handleToggleShowApiForm"
+            class="tip animated fadeInUp"
+            :style="{ 'animation-delay': '0.4s' }"
+            v-if="settingVisible"
+          >
             <a-icon type="setting" />
           </a>
         </a-col>
@@ -58,6 +63,7 @@ export default {
   data() {
     return {
       resetPasswordButtonVisible: false,
+      settingVisible: false,
       apiForm: {
         apiUrl: window.location.host,
         visible: false
@@ -75,6 +81,7 @@ export default {
         _this.resetPasswordButtonVisible = !_this.resetPasswordButtonVisible
       }
     })
+    this.settingVisible = process.env.NODE_ENV === 'development'
   },
   methods: {
     ...mapActions(['refreshUserCache', 'refreshOptionsCache']),

@@ -359,7 +359,31 @@
 
             <a-divider type="vertical" />
 
+            <Icon type="setting" />
             <a href="javascript:;" @click="handleShowPostSettings(post)">设置</a>
+
+            <a-divider type="vertical" />
+            <a-popconfirm
+              :title="'你确定要将【' + post.title + '】文章设置为公共读吗？'"
+              @confirm="handleEditStatusClick(post.id, 'PUBLISHED')"
+              okText="确定"
+              cancelText="取消"
+              v-if="post.status === 'INTIMATE'"
+            >
+              <!-- <a-icon type="star-o" /> -->
+              <a href="javascript:;">公共读</a>
+            </a-popconfirm>
+
+            <a-popconfirm
+              :title="'你确定要发布【' + post.title + '】文章为私有读？'"
+              @confirm="handleEditStatusClick(post.id, 'INTIMATE')"
+              okText="确定"
+              cancelText="取消"
+              v-if="post.status === 'PUBLISHED'"
+            >
+              <!-- <a-icon type="heart" /> -->
+              <a href="javascript:;">私有读</a>
+            </a-popconfirm>
           </span>
         </a-table>
         <div class="page-wrapper">
