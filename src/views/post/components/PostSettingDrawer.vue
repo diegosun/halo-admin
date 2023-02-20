@@ -442,7 +442,7 @@ export default {
       this.createOrUpdatePost()
     },
     handlePublishClick() {
-      this.selectedPost.status = 'PUBLISHED'
+      this.selectedPost.status = 'INTIMATE'
       this.createOrUpdatePost()
     },
     createOrUpdatePost() {
